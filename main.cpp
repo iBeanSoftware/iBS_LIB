@@ -13,8 +13,27 @@ int main (int argc, const char * argv[])
 {
     
     iBS::uint testint = iBS::uint();
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    
+    std::cout << testint.get() << std::endl;
+
+    testint = 'A';
+    std::cout << "A = " << testint.get() << "  Z = "<<iBS::uint('Z').get() <<std::endl;
+
+    testint = 'a';
+    std::cout << "a = " << testint.get() << "  z = "<<iBS::uint('z').get() <<std::endl;
+    
+    char ch = char(testint.get());
+    
+    std::cout << "a = " << ch << "  z = "<<char(iBS::uint('z').get()) <<std::endl;
+
+    
+    ch = char(testint.get());
+    
+    std::cout << "a = " << ch << "  z = "<<char(iBS::uint('z').get()) <<std::endl;
+  
+    testint = '\r';
+    std::cout << "return = " << testint.get() << "  tab = "<<iBS::uint('\t').get() <<std::endl;
+
     return 0;
 }
 

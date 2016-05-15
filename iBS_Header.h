@@ -10,13 +10,19 @@
 #ifndef iBS_Header_h
 #define iBS_Header_h
 
+#include <vector>
+
+const int iBS_HEADER_MAJOR_VERSION = 0;
+const int iBS_HEADER_MINOR_VERSION = 2;
 
 namespace iBS 
 {
     
+    //-----------------------------------------------
+    // uint = unsigned 32 bit int made to hold Unicode value
+    //-----------------------------------------------
     struct uint 
     {
-        
         uint():value(0){}; 
         uint(int v):value((uint32_t)v){}; 
         uint(long v):value((uint32_t)v){}; 
@@ -35,6 +41,12 @@ namespace iBS
             return *this;
         };
         
+        uint& operator=(char ch)
+        {
+            set((uint32_t)ch); 
+            return *this;
+        };
+
         bool operator==(char c)
         {
             return (value == (uint32_t)c);
@@ -61,6 +73,27 @@ namespace iBS
         uint32_t value;
         
     };
+ 
+    //-----------------------------------------------
+    //uchar = uint made to hold any char of the world
+    //-----------------------------------------------
+     struct uchar
+    {
+
+    private:    
+        uint value;
+    };
+    
+    //-----------------------------------------------
+    //
+    //-----------------------------------------------
+    struct ustr
+    {
+        
+    private:    
+        std::vector<uchar> ref;
+    };
+    
     
     
 }// end of iBS namespace

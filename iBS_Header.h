@@ -13,7 +13,7 @@
 #include <vector>
 
 const int iBS_HEADER_MAJOR_VERSION = 0;
-const int iBS_HEADER_MINOR_VERSION = 2;
+const int iBS_HEADER_MINOR_VERSION = 3;
 
 namespace iBS 
 {
@@ -30,44 +30,16 @@ namespace iBS
         uint(uint const &v):value(v.value){}; 
         uint(uint32_t v):value(v){}; 
         
-        uint& operator=(uint unicode)
-        {
-            set(unicode.value); 
-            return *this;
-        };
-        uint& operator=(uint32_t unicode)
-        {
-            set(unicode); 
-            return *this;
-        };
-        
-        uint& operator=(char ch)
-        {
-            set((uint32_t)ch); 
-            return *this;
-        };
+        uint& operator=(uint unicode) { set(unicode.value); return *this; };
+        uint& operator=(uint32_t unicode){ set(unicode); return *this; };
+        uint& operator=(char ch) { set((uint32_t)ch); return *this; };
 
-        bool operator==(char c)
-        {
-            return (value == (uint32_t)c);
-        };
-        bool operator==(int i)
-        {
-            return (value == (uint32_t)i);
-        };
-        bool operator==(uint32_t unicode)
-        {
-            return (value == unicode);
-        };
+        bool operator==(char c) { std::string str; return (value == (uint32_t)c); };
+        bool operator==(int i) { return (value == (uint32_t)i); };
+        bool operator==(uint32_t unicode) { return (value == unicode); };
         
-        uint32_t get()
-        {
-            return value;
-        };
-        void set(uint32_t v)
-        {
-            value = v;
-        };
+        uint32_t get() { return value; };
+        void set(uint32_t v) { value = v; };
         
     private:    
         uint32_t value;

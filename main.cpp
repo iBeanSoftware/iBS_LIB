@@ -12,27 +12,28 @@
 int main (int argc, const char * argv[])
 {
     
-    iBS::uint testint = iBS::uint();
+    iBS::uint u_int = iBS::uint();
     
-    std::cout << testint.get() << std::endl;
+    std::cout << u_int.get() << std::endl;
 
-    testint = 'A';
-    std::cout << "A = " << testint.get() << "  Z = "<<iBS::uint('Z').get() <<std::endl;
+    u_int = 'A';
+    std::cout << "A = " << u_int.get() << "  Z = "<<iBS::uint('Z').get() <<std::endl;
 
-    testint = 'a';
-    std::cout << "a = " << testint.get() << "  z = "<<iBS::uint('z').get() <<std::endl;
+    u_int = 'a';
+    std::cout << "a = " << u_int.get() << "  z = "<<iBS::uint('z').get() <<std::endl;
     
-    char ch = char(testint.get());
+    char ch = char(u_int.get());
     
     std::cout << "a = " << ch << "  z = "<<char(iBS::uint('z').get()) <<std::endl;
 
+    iBS::uchar uch = iBS::uchar(u_int); // created uchar from a uint
     
-    ch = char(testint.get());
-    
-    std::cout << "a = " << ch << "  z = "<<char(iBS::uint('z').get()) <<std::endl;
+    wchar_t w = wchar_t(uch.get()); // created wchar_t with uchar
+    //w = 'A';
+    std::cout << "a = " << w << "  z = "<<char(iBS::uchar('z').upper_case()) <<std::endl;
   
-    testint = '\r';
-    std::cout << "return = " << testint.get() << "  tab = "<<iBS::uint('\t').get() <<std::endl;
+    u_int = '\r';
+    std::cout << "return = " << u_int.get() << "  tab = "<<iBS::uint('\t').get() <<std::endl;
 
     return 0;
 }

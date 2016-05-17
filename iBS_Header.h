@@ -15,7 +15,7 @@
 
 
 const int iBS_HEADER_MAJOR_VERSION = 0;
-const int iBS_HEADER_MINOR_VERSION = 4;
+const int iBS_HEADER_MINOR_VERSION = 5;
 
 namespace iBS 
 {
@@ -36,13 +36,22 @@ namespace iBS
         uint& operator=(uint32_t unicode){ set(unicode); return *this; };
         uint& operator=(char ch) { set((uint32_t)ch); return *this; };
 
+        uint& operator+(uint32_t unicode){ set(value+unicode); return *this; };
+        uint& operator-(uint32_t unicode){ set(value-unicode); return *this; };
+
         bool operator==(char c) { std::string str; return (value == (uint32_t)c); };
         bool operator==(int i) { return (value == (uint32_t)i); };
         bool operator==(uint32_t unicode) { return (value == unicode); };
         bool operator==(uint unicode) { return (value == unicode.get()); };
+        bool operator<(uint32_t unicode) { return (value < unicode); };
+        bool operator>(uint32_t unicode) { return (value > unicode); };
+        bool operator<=(uint32_t unicode) { return (value <= unicode); };
+        bool operator>=(uint32_t unicode) { return (value >= unicode); };
         
         uint32_t get() { return value; };
         void set(uint32_t v) { value = v; };
+        void set(uint v) { value = v.value; };
+
         
     private:    
         uint32_t value;
@@ -103,6 +112,12 @@ namespace iBS
         uchar(uchar const &v):value(v.value){}; 
         uchar(wchar_t wch):value(decode(wch)){}; 
         
+        uint32_t get() { return value.get(); };
+        void set(uint32_t v) { value = v; };
+        //uint get() { return value; };
+        void set(uint v) { value = v; };
+        void set(wchar_t wch) { value = decode(wch); };
+        
         uchar& operator=(int unicode){ set((uint32_t)unicode); return *this; };
         uchar& operator=(uint32_t unicode){ set(unicode); return *this; };
         uchar& operator=(uint unicode) { set(unicode.get()); return *this; };
@@ -116,8 +131,8 @@ namespace iBS
         bool operator==(char c) { return (value == c); };
         bool operator==(uchar uch) { return (value == uch.value); };
         
-        uint32_t get() { return value.get(); };
-        void set(uint32_t v) { value = v; };
+        uint32_t lower_case() { if(value>=65 && value<=90) return (value+32).get(); else return value.get();};
+        uint32_t upper_case() { if(value>=97 && value<=122) return (value-32).get(); else return value.get();};
 
     private:    
         uint value;

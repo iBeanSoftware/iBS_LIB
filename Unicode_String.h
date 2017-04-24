@@ -19,7 +19,7 @@
 //  Created by nash on 9/18/15.
 //  Copyright© 2015+ iBean Software. All rights reserved.
 //  iBeanSoftware@GMail.com
-//  https://www.facebook.com/iBeanSowtware
+//  https://www.facebook.com/iBeanSoftware
 //
 //  a struct to hold a multi length UTF-8 char
 //  Constructs using 0-6: 8 bit bytes

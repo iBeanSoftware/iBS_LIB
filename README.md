@@ -6,6 +6,69 @@ Basic C++ Lib
 //UTF-8_String.h - Is a header you can drop in your project to have access to a collection vector safe structures that can do many things with iBean Software's UTF-8 formatted structures that can convert from any type of char used to create a cross platform C++ programmer's UTF-8 tool kit. 
 
 //------------------------------------------------------------------------
+    struct  u8char  //Changed struct name to match C++ standerds
+        {     
+
+            u8char();
+            u8char(std::vector<unsigned char>& c);
+            ~u8char();
+            u8char(UnicodeInt unicode);
+            u8char(char ch);
+            u8char(wchar_t ch);
+            u8char& operator=( u8char const& x);
+            u8char& operator=(UnicodeInt unicode);
+            u8char& operator=(char ch);
+            u8char& operator=(wchar_t& wc);
+            size_t size() const ;
+            void   encode(unsigned int& unicode); 
+            inline void setUnicode(UnicodeLong unicode);
+            inline void setUnicode(UnicodeInt unicode);
+            bool appendtostr(std::string& str);
+            bool appendtostr(std::stringstream& str);
+            std::string str();
+            std::vector <unsigned char>  ref;//always keeps data in a UTF-8 format.
+            void resize(size_t x);
+        };
+    typedef struct 
+        {
+            std::vector<u8char> ref;
+            void append(u8char uc);
+            void append(char ch);
+            void append(std::stringstream& str)
+            size_t u8char_count();
+            size_t size()// returns total count of unsigned char
+            void appendtostr(std::string& str)
+            std::string str()
+        }u8str;
+    struct u8text
+        {
+            std::vector<u8str> ref;
+            void append(u8str str);
+            void clear();
+            size_t line_count()// returns total lines in text
+            size_t letter_count()// returns total count of unsigned char
+        };
+    struct u8record
+        {
+            std::vector<u8str> ref;
+            void append(u8str str);
+            void clear();
+            size_t width();
+        };
+    struct u8table
+        {// ref[0] = field names, ref[1] = record 1
+            std::vector<u8record> ref;
+            void append(u8record rec);
+            void clear();
+            size_t length();
+        };
+    //-------------------------------
+    //      Useful UTF-8 Functions
+    //-------------------------------
+    bool isTrailByte(unsigned char byte);
+    short ByteCount(unsigned char byte);
+    void readu8file(std::string filename,u8str& u8_v);    
+    inline UnicodeInt decode(u8char& c)//returns a Unicode
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------------------

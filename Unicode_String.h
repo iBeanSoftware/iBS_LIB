@@ -3,7 +3,7 @@
 //
 //
 //  Created by nash on 9/20/16.
-//  Copyright 2016 iBean Software.
+//  Copyright 2015-2018 iBean Software.
 //  All rights reserved.
 //
 

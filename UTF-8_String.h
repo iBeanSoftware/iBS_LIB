@@ -35,12 +35,15 @@
 #include <cwchar>
 
 const int UTF8Str_MAJOR_VERSION = 3;
-const int UTF8Str_MINOR_VERSION = 1;
+const int UTF8Str_MINOR_VERSION = 2;
 
 namespace iBS 
 {
-#define UnicodeInt uint32_t
-#define UnicodeLong uint64_t
+/*  rem switch to change from 32 bit int - 64 bit int
+#define UnicodeInt uint32_t 
+/*/    
+#define UnicodeInt uint64_t
+//*/
     
     //-------
     struct  u8char  //Changed struct name to match C++ standerds
@@ -241,7 +244,7 @@ namespace iBS
     //----------------------------------------------------------    
     
     
-    typedef struct 
+    typedef struct u8str
     {
         std::vector<u8char> ref;
         
@@ -290,7 +293,7 @@ namespace iBS
             return result.str();
         };
         
-    }u8str;
+    };
     
     struct u8text
     {

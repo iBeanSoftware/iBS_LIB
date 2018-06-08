@@ -1,9 +1,10 @@
 # iBS_LIB
-Unicode C++ Lib
-
+# Unicode C++ Lib
+# iBS::u8char, iBS::u8str, iBS::u8text
 //------------------------------------------------------------------------
 
 //UTF-8_String.h - Is a header you can drop in your project to have access to a collection vector safe structures that can do many things with iBean Software's UTF-8 formatted structures that can convert from any type of char used to create a cross platform C++ programmer's UTF-8 tool kit. 
+Newer Bata Version located: https://github.com/NashBean/UTF-8_Vector/blob/master/Uchar.h
 
 //------------------------------------------------------------------------
     struct  u8char  //Changed struct name to match C++ standerds

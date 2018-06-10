@@ -11,7 +11,7 @@
     #define iBS_Matrix_h
 
     const int Matrix_MAJOR_VERSION = 1;
-    const int Matrix_MINOR_VERSION = 0;
+    const int Matrix_MINOR_VERSION = 1;
 
     #include <iostream>
     #include <vector>
@@ -21,11 +21,18 @@
     {
         std::vector<std::vector<int> > a; 
         
+        void resize(int r, int c)
+        {
+            a.resize(r);
+            for (int rs=0; rs<r; ++rs) 
+            {
+                a[rs].resize(c);
+            }
+        }
+        
         Matrix& operator =(Matrix& o)
         {
-            a.resize(o.a.size());
-            for(int i=0;i<a.size();i++)
-                a[i].resize(o.a[i].size());
+            resize(o.a.size(), o.a[0].size());
             for(int i=0;i<a.size();i++) 
                 for(int j=0;j<a[i].size();j++) 
                 {
@@ -57,9 +64,7 @@
             if(a[0].size() != o.a.size()) return *this;
             
             Matrix tm;
-            tm.a.resize(a.size());
-            for(int i=0;i<tm.a.size();i++)
-                tm.a[i].resize(o.a[0].size());
+            resize(a.size(), o.a[0].size());
             
             for(int i=0;i<tm.a.size();i++) 
                 for(int j=0;j<tm.a[i].size();j++) 

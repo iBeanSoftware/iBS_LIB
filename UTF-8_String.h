@@ -39,7 +39,7 @@ const int UTF8Str_MINOR_VERSION = 3;
 
 namespace iBS 
 {
-//*  rem switch to change from 32 bit int - 64 bit int
+/*  rem switch to change from 32 bit int - 64 bit int
 #define UnicodeInt uint32_t 
 /*/    
 #define UnicodeInt uint64_t

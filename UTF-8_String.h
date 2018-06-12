@@ -257,6 +257,13 @@ namespace iBS
         u8str(std::string& str):ref(str.size()){if (ref.size()) for(size_t i=0; i<ref.size(); ++i) ref[i]=str[i];};
         ~u8str(){clear();};
         
+        u8str& operator=(u8str const& str)
+        {   ref.resize(str.ref.size());   
+            for (size_t i=0; i<ref.size(); ++i) ref[i]=str.ref[i]; 
+            return *this;
+        };
+
+        
         size_t u8char_count(){return ref.size();};
         size_t size()// returns total count of unsigned char
         {   size_t s=0;

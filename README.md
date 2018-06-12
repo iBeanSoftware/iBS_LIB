@@ -23,6 +23,7 @@ UTF-8_String.h - Is a header you can drop in your project to have access to a co
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
+
 //Unicode_String.h - Is like the above header, but the structures charT are saved in memory as a single Unicode Int.
 
     Found in the Unicode_String.h File using namespace iBS
@@ -31,6 +32,7 @@ UTF-8_String.h - Is a header you can drop in your project to have access to a co
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
+
 //iBS_Matrix.h - An int based matrix stuct of vectors. 
 
     Found in the iBS_Matrix.h File using namespace iBS

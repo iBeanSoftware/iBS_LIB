@@ -255,7 +255,7 @@ namespace iBS
         u8str(std::stringstream& str):ref(str.size()){if (str.size()) for(size_t i=0; i<ref.size(); ++i) ref[i]=str[i]);};
         u8str(std::vector<unsigned char>& c):ref(c.size()){for (size_t i=0; i<ref.size(); ++i) ref[i]=c[i];};
         u8str(std::string& str):ref(str.size()){if (ref.size()) for(size_t i=0; i<ref.size(); ++i) ref[i]=str[i];};
-        ~u8str(){if(ref.size())ref.clear();};
+        ~u8str(){clear();};
         
         size_t u8char_count(){return ref.size();};
         size_t size()// returns total count of unsigned char
@@ -264,7 +264,8 @@ namespace iBS
             {   s+=ref[rs].ref.size();  }
             return s;
         };
-       
+        void clear(){if(ref.size())ref.clear();};
+        
         void append(u8char uc){ref.push_back(uc);};
         void append(char ch){ref.push_back(u8char(ch));};
         void append(wchar_t ch){ref.push_back(u8char(ch));};
@@ -306,8 +307,21 @@ namespace iBS
     struct u8text
     {
         std::vector<u8str> ref;
+        
+        u8text():ref(0){ref.reserve(4);};
+        u8text(u8char uc):ref(1){ref.reserve(4); ref[0]=u8str(uc);};
+        u8text(char ch):ref(1){ref.reserve(4); ref[0]=u8str(ch);};
+        u8text(wchar_t ch):ref(1){ref.reserve(4); ref[0]=u8str(ch);};
+        u8text(std::stringstream& str):ref(1){ref.reserve(4); ref[0]=u8str(str);};
+        u8text(std::vector<unsigned char>& c):ref(1){ref.reserve(4); ref[0]=u8str(c);};
+        u8text(std::string& str):ref(1){ref.reserve(4); ref[0]=u8str(str);};
+        ~u8text(){clear();};
+
         void append(u8str str){ref.push_back(str);};
-        void clear(){ref.clear();};
+        void append(std::string str){ref.push_back(u8str(str));};
+        void append(std::stringstream& str){ref.push_back(u8str(str));};
+        
+        void clear(){if(ref.size())ref.clear();};
         size_t line_count()// returns total lines in text
         {  return ref.size(); };
         size_t letter_count()// returns total count of unsigned char
@@ -316,9 +330,6 @@ namespace iBS
             {   s+=ref[rs].ref.size();  }
             return s;
         };
-        
-        
-        
     };
     
     struct u8record

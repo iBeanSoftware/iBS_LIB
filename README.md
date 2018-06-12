@@ -3,6 +3,7 @@
 # iBS::u8char, iBS::u8str, iBS::u8text
 
 //------------------------------------------------------------------------
+
 UTF-8_String.h - Is a header you can drop in your project to have access to a collection vector safe structures that can do many things like convert from any type of char used to create a cross platform C++ programmer's UTF-8 tool kit. 
 
     Found in the UTF-8_String.h File using namespace iBS

@@ -262,6 +262,11 @@ namespace iBS
             for (size_t i=0; i<ref.size(); ++i) ref[i]=str.ref[i]; 
             return *this;
         };
+        u8str& operator=(std::string const& str)
+        {   ref.resize(str.length());   
+            for (size_t i=0; i<ref.size(); ++i) ref[i]=str.ref[i]; 
+            return *this;
+        };
 
         
         size_t u8char_count(){return ref.size();};

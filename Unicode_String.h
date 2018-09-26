@@ -3,7 +3,8 @@
 //
 //
 //  Created by nash on 9/20/16.
-//  Copyright 2015-2018 iBean Software.
+//  By NashBean (https://github.com/NashBean)
+//  Copyright 2015-2018 iBean Software (https://ibeansoftware.github.io/)
 //  All rights reserved.
 //
 

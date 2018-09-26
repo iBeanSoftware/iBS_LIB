@@ -9,20 +9,23 @@
 
 Namespace iBS
 {
+  #define Alf \x05D0
+  #define Shin \x05E9
+  
   struct file_format
   {// א 05D0     ש 05E9  
   file_format()
   {
-    alf = "05D005D0000005E9";//"שא";  
-    ref=NULL; shin=NULL;
+    alf = Alf+Alf+'\x0000'+Shin;//"\x05D0\x05D0\x0000\x05E9";//Alf=" א "Shin=" ש ";  
+    ref=Null; shin=Null;
    };
   ~file_format();
   
-  size(){if(ref&&shin) return(shin-ref);};
-  
+  int size(){if(ref&&shin) return(shin-ref); else return 0;};
+  char[2] type(){char result[2]='\x0000'; if(alf[4]!=Null||alf[5]!=Null){result[0]=&alf[4]; result[1]=&alf[5]}};    
   protected:
-    unsigned char alf[16];
+    unsigned char alf[8];// beginning
     unsigned char* ref;
-    unsigned char* shin;
+    unsigned char* shin;// end
   };
 };

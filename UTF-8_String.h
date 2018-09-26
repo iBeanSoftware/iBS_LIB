@@ -2,8 +2,8 @@
 //  UTF-8_String.h
 //
 //
-//  Created by nash on 9/20/16.
-//  Copyright 2016 iBean Software.
+//  Created by nash(https://github.com/NashBean) on 9/20/16.
+//  Copyright 2016 iBean Software(https://iBeanSoftware.github.io),
 //  All rights reserved.
 //
 

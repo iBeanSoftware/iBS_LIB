@@ -2,8 +2,8 @@
     //  iBS_Matrix.h
     //
     //
-    //  Created by nash on 11/29/15.
-    //  Copyright 2015 iBean Software.
+    //  Created by nash(https://github.com/NashBean) on 11/29/15.
+    //  Copyright 2015 iBean Software (https://ibeansoftware.github.io/),
     //  All rights reserved.
     //
 

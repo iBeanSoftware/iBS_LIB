@@ -3,7 +3,7 @@
 //  iBS_LIB
 //
 //  Created by nash on 5/15/16.
-//  Copyright 2016 __MyCompanyName__. All rights reserved.
+//  Copyright 2016 iBean Software. All rights reserved.
 //
 
 #include <iostream>

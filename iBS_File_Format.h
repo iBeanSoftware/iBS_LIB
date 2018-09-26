@@ -10,14 +10,18 @@
 Namespace iBS
 {
   struct file_format
+  {// א 05D0     ש 05E9  
+  file_format()
   {
-  file_format(){alf = "א";  ref=NULL; omaga=NULL;};
+    alf = "05D005D0000005E9";//"שא";  
+    ref=NULL; omaga=NULL;
+   };
   ~file_format();
   
   size(){if(ref&&omaga) return(omaga-ref);};
   
   protected:
-    unsigned char alf[2];
+    unsigned char alf[16];
     unsigned char* ref;
     unsigned char* omaga;
   };

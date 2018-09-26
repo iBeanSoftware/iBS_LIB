@@ -14,15 +14,15 @@ Namespace iBS
   file_format()
   {
     alf = "05D005D0000005E9";//"שא";  
-    ref=NULL; omaga=NULL;
+    ref=NULL; shin=NULL;
    };
   ~file_format();
   
-  size(){if(ref&&omaga) return(omaga-ref);};
+  size(){if(ref&&shin) return(shin-ref);};
   
   protected:
     unsigned char alf[16];
     unsigned char* ref;
-    unsigned char* omaga;
+    unsigned char* shin;
   };
 };

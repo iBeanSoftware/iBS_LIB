@@ -2,8 +2,10 @@
 //  main.cpp
 //  iBS_LIB
 //
-//  Created by nash on 5/15/16.
-//  Copyright 2016 iBean Software. All rights reserved.
+//  Created on 5/15/16,
+//  By NashBean (https://github.com/NashBean)
+//  Copyright 2016-2018 iBean Software. All rights reserved.
+//  https://ibeansoftware.github.io/
 //
 
 #include <iostream>

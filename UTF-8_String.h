@@ -35,7 +35,7 @@
 #include <cwchar>
 
 const int UTF8Str_MAJOR_VERSION = 3;
-const int UTF8Str_MINOR_VERSION = 3;
+const int UTF8Str_MINOR_VERSION = 4;
 
 namespace iBS 
 {

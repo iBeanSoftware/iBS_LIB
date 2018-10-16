@@ -103,7 +103,7 @@ namespace iBS
         };
         size_t size() const  { return ref.size(); };
         void   encode(unsigned int& unicode){setUnicode(unicode);}; 
-        inline void setUnicode(UnicodeLong unicode)
+        inline void setUnicode(UnicodeInt unicode)
         { //converts unicode into UTF-8 formatted u8char  
             if (unicode<=0x7f) 
             {
@@ -199,7 +199,7 @@ namespace iBS
         };
         
         inline void setUnicode(UnicodeInt unicode)
-            {setUnicode(UnicodeLong(unicode));};
+            {setUnicode(UnicodeInt(unicode));};
         
         bool appendtostr(std::string& str)
         {

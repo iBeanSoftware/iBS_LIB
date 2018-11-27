@@ -4,24 +4,15 @@
 //
 //  Created by Nash(https://github.com/NashBean) on 11/27/2018.
 //  Copyright 2018 iBean Software(https://iBeanSoftware.github.io),
+//  iBeanSoftware@GMail.com
+//  https://www.facebook.com/iBeanSoftware
 //  All rights reserved.
 //
-
-#ifndef Bible_Vector_h
-#define Bible_Vector_h
-
-//
-//  Uchar.h  // Uchar header
-//  Get cureent version off Github:
-//  https://github.com/NashBean/UTF-8_Vector/blob/master/Uchar.h
-//
-//  Created by nash on 9/18/15.
-//  Copyright© 2015+ iBean Software. All rights reserved.
-//  iBeanSoftware@GMail.com
-//  https://www.facebook.com/iBeanSowtware
 //
 //  a struct to hold a Bible with books[].Chapers[].Verses[] stuctured vectors 
 
+#ifndef Bible_Vector_h
+#define Bible_Vector_h
 
 #include<fstream>
 #include<sstream>
@@ -97,36 +88,31 @@ namespace iBS
             istringstream sin(line);
             sin >> bookInput;
             if (bookInput == "Book")
-            {//todo new book to start and push back old book if one
-             // book = bookInput;
+            {
+              Book nb;
               sin >> bookNumber;
-              getline(sin, book.name);
-            //  book.erase(0, 1);
+              getline(sin, nb.name);
+              book.push_back(nb);
             }
             else
             {
               Verse nv;//new verse
-              //chapter = stoi(bookInput);
               nv.cn = StrToInt(bookInput);//chapter number
               sin >> nv.vn;//verseNumber;
               getline(sin, nv.ref);
+              do while(nV.cn<book[bookNumber].chapter.size())
+              {
+                  Chapter nc;//new chapter
+                  book[bookNumber].chapter.push_back(nc);
+              };
               book[bookNumber].chapter[nv.cn].verse.push_back(nv);
-              //VerseKey newVerseKey;
-              //newVerseKey.setBook(book);
-              //newVerseKey.setChapter(chapter);
-              //newVerseKey.setVerseNumber(verseNumber);
-
-              //Verse newVerse;
-             // newVerse.setVerseKey(newVerseKey);
-              //newVerse.setVerseText(verseText);
-
-             // (*this)[newVerseKey] = newVerse;
             }
           } while (!fin.eof());  
       };
 
     };
-};// end    namespace iBS 
+}// end    namespace iBS 
+#endif // Bible_Vector_h
 
 
 

@@ -80,7 +80,7 @@ namespace iBS
     //-----------------------------------------------
     inline UnicodeInt decode(std::vector<char>& c)
     {
-        uint32_t result = uint32_t(0);
+        uint64_t result = uint64_t(0);
         
         //UnicodeInt result=0;
         if (c.size()==0) { return UnicodeInt(result);}
@@ -88,8 +88,8 @@ namespace iBS
         if (c.size()==2) { result=c[0] & 0x1f; }
         else if (c.size()==3) { result=c[0] & 0x0f; }
         else if (c.size()==4) { result=c[0] & 0x07; }
-        else if (c.size()==5) { result=c[0] & 0x03; }// will need a 64 bit int
-        else if (c.size()==6) { result=c[0] & 0x01; }// will need a 64 bit int
+        else if (c.size()==5) { result=c[0] & 0x03; }
+        else if (c.size()==6) { result=c[0] & 0x01; }
         for (size_t i=1; i<c.size(); ++i) 
         { result=result<<6; result+=c[i] & 0x3f; }
         

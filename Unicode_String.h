@@ -32,7 +32,7 @@
 #include "UTF-8_String.h"
 
 const int iBS_UStr_MAJOR_VERSION = 3;
-const int iBS_UStr_MINOR_VERSION = 0;
+const int iBS_UStr_MINOR_VERSION = 1;
 
 namespace iBS 
 {

@@ -21,6 +21,28 @@
     {
         std::vector<std::vector<int> > a; 
         
+        Matrix():a(0){};
+        Matrix(int r, int c):a(r)
+        {
+            for(int rs=0; rs<a.size(); ++rs) 
+            {
+                a[rs].resize(c);
+            }
+        };
+        ~Matrix(){if(a.size()) clear();};
+
+        void clear()
+        {
+            if(a.size())
+            {
+                for(int rs=0; rs<a.size(); ++rs) 
+                {
+                    if(a[rs].size()) a[rs].clear();
+                }
+                a.clear();
+            }
+        };
+        
         void resize(int r, int c)
         {
             a.resize(r);

@@ -1,6 +1,6 @@
     //
     //  iBS_Matrix.h
-    //
+    //  https://github.com/iBeanSoftware/iBS_LIB/blob/master/iBS_Matrix.h
     //
     //  Created by nash(https://github.com/NashBean) on 11/29/15.
     //  Copyright 2015 iBean Software (https://ibeansoftware.github.io/),

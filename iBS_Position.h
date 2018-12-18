@@ -1,6 +1,6 @@
 //
 //  iBS_Position.h
-//  https://github.com/iBeanSoftware/iBS_LIB/master/iBS_Position.h
+//  https://github.com/iBeanSoftware/iBS_LIB/blob/master/iBS_Position.h
 //
 //  Created by nash(https://github.com/NashBean) on 12/18/2018.
 //  Copyright 2018 iBean Software(https://iBeanSoftware.github.io),

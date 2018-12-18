@@ -26,7 +26,14 @@ namespace iBS
       Position(int ax, int ay){x=ax;y=ay;};
       //    Position(const  Position& a){x=a.x;y=a.y;};
       ~Position(){};
-
+ 
+      Position& operator =(Position& other)
+      {
+        x=other.x;
+        y=other.y;
+        return *this;
+      };
+    
       bool operator ==(Position& other)
       {
           if(x == other.x && y == other.y)
@@ -67,6 +74,13 @@ namespace iBS
             return true;
         return false;
     };
+    
+     bool is_even()
+     {
+        if(!y) return false;
+        else if((y%2) == 0) return false;//even on one base
+        else return true;//odd on one base
+     };
   };
 }//end of namespace iBS 
 

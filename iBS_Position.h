@@ -83,6 +83,39 @@ namespace iBS
      };
   };
 //------------------------------------------------------------
+struct Slope
+{
+    int y, x;
+    Slope(){y=x=0;};
+    Slope(Position& pos1, Position& pos2)
+    {
+        y = pos2.y-pos1.y;
+        x = pos2.x-pos1.x;
+    };
+    ~Slope(){};
+};
+//-------------------------------------------------------------------
+
+struct Line
+{
+    Slope m;
+    Position A, B;
+    Line():m(), A(), B() {};
+    Line(Position& spos, Position& epos):m(spos, epos), A(spos.x, spos.y), B(epos.x, epos.y) {};
+    ~Line(){};
+};
+//-------------------------------------------------------------------
+
+struct HexTrail
+{
+    Line bee_line;
+    vector<Position> ref;
+    
+    HexTrail():ref(0) {};
+    ~HexTrail(){if(ref.size()) ref.clear();};
+    bool isSet(){if(ref.size()) return true; return false;};
+};
+//-------------------------------------------------------------------
   
 //------------------------------------------------------------
 const int GRID_WIDTH=23;

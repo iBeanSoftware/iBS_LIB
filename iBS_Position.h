@@ -93,6 +93,25 @@ struct Slope
         x = pos2.x-pos1.x;
     };
     ~Slope(){};
+    Slope& operator =(Slope& other)
+      {
+        x=other.x;
+        y=other.y;
+        return *this;
+      };
+      bool operator ==(Slope& other)
+      {
+          if(x == other.x && y == other.y)
+              return true;
+          return false;
+      };
+      bool operator !=(Position& other)
+      {
+         if(x == other.x && y == other.y)
+             return false;
+          return true;
+      };
+
 };
 //-------------------------------------------------------------------
 
@@ -103,6 +122,13 @@ struct Line
     Line():m(), A(), B() {};
     Line(Position& spos, Position& epos):m(spos, epos), A(spos.x, spos.y), B(epos.x, epos.y) {};
     ~Line(){};
+    Line& operator =(Line& other)
+      {
+        A=other.A;
+        B=other.B;
+        return *this;
+      };
+
 };
 //-------------------------------------------------------------------
 
@@ -113,6 +139,14 @@ struct HexTrail
     
     HexTrail():ref(0) {};
     ~HexTrail(){if(ref.size()) ref.clear();};
+    HexTrail& operator =(HexTrail& other)
+      {
+	ref.resize(other.ref.size())
+        ref=other.ref;
+        y=other.y;
+        return *this;
+      };
+
     bool isSet(){if(ref.size()) return true; return false;};
 };
 //-------------------------------------------------------------------

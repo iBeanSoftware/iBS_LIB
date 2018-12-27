@@ -46,7 +46,7 @@ namespace iBS
 //*/
     
     //-------
-    struct  u8char  //Changed struct name to match C++ standerds
+    typedef struct  u8char  //Changed struct name to match C++ standerds
     {     //-------
         
         u8char():ref(0){ref.reserve(1);};//ref[0]='\x0000';};
@@ -198,7 +198,7 @@ namespace iBS
             else    ref[0]=0x00;
         };
         
-        inline void setUnicode(UnicodeInt unicode)
+        void setUnicode(UnicodeInt unicode)
             {setUnicode(UnicodeInt(unicode));};
         
         bool appendtostr(std::string& str)
@@ -316,7 +316,7 @@ namespace iBS
         
     };
     
-    struct u8text
+    typedef struct u8text
     {
         std::vector<u8str> ref;
         
@@ -435,7 +435,7 @@ namespace iBS
     };    
     //-------------------------------
     
-    inline UnicodeInt decode(u8char& c)//returns a Unicode
+    UnicodeInt decode(u8char& c)//returns a Unicode
     {
         UnicodeInt result=0;
         if (c.size()==0) { return result;}

@@ -5,7 +5,8 @@ Type Definitions:
 
         Defined UnicodeInt as a uint64_t
     
-        iBS::u8char //u8char replaces char as a vector of chars, that represent a single Unicode value in UTF-8 format.
+        iBS::u8char // u8char replaces char as a vector of chars, 
+                    // that represent a single Unicode value in UTF-8 format.
                 Constructors:
                        u8char();
                        u8char(std::vector<unsigned char>& c);// char vector that represents a single Unicode char
@@ -16,9 +17,12 @@ Type Definitions:
                        ~u8char();
               
                         
-        iBS::u8str  // u8str replaces std::string as a vector of u8char, but matains compatabilaty with std::string. 
+        iBS::u8str  // u8str replaces std::string as a vector of u8char, 
+                    //but matains compatabilaty with std::string. 
         
-        iBS::u8text  // u8text is a vector of u8str. A vector of strings that can represent a file, a note, a record or anything else that your could think of.
+        iBS::u8text  // u8text is a vector of u8str.
+                     //A vector of strings that can represent a file, a note, a record 
+                     //or anything else that your could think of.
         
         iBS::u8record // still needs improvements
         

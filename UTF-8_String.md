@@ -1,4 +1,7 @@
 iBean Software's UTF-8 API for c or c++
+Creating a cross platform char, string, and text.
+With following drop in header file that should be found in dirictory with this file:
+
 iBS_UTF-8_String.h
 
 Type Definitions:

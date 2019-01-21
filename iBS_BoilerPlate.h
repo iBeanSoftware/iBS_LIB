@@ -2,7 +2,7 @@
 
 using namespace iBS;
 
-struct PageInfo
+typedef struct PageInfo
 {
        u8str doc_type;
        u8str lang;
@@ -11,7 +11,7 @@ struct PageInfo
 };
 
 
-struct WebPage
+typedef struct WebPage
 {
        PageInfo info;
        u8str page_title;

@@ -17,7 +17,7 @@
     #include <vector>
     namespace iBS
     {
-    struct Matrix 
+    typedef  struct Matrix 
     {
         std::vector<std::vector<int> > a; 
         

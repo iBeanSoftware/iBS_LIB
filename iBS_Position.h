@@ -19,7 +19,7 @@ const int iBS_POSITION_MAJOR_VERSION = 1;
 const int iBS_POSITION_MINOR_VERSION = 0;
 namespace iBS 
 {
-  struct Position 
+  typedef struct Position 
   {
       int x, y;
       Position(){x=y=0;};
@@ -83,7 +83,7 @@ namespace iBS
      };
   };
 //------------------------------------------------------------
-struct Slope
+typedef struct Slope
 {
     int y, x;
     Slope(){y=x=0;};
@@ -115,7 +115,7 @@ struct Slope
 };
 //-------------------------------------------------------------------
 
-struct Line
+typedef struct Line
 {
     Slope m;
     Position A, B;
@@ -132,7 +132,7 @@ struct Line
 };
 //-------------------------------------------------------------------
 
-struct HexTrail
+typedef struct HexTrail
 {
     Line bee_line;
     vector<Position> ref;
@@ -155,7 +155,7 @@ struct HexTrail
 const int GRID_WIDTH=23;
 const int GRID_HIGHT=21;
 //------------------------------------------------------------
- struct	HexGrid
+typedef struct	HexGrid
 {
     int ref[GRID_WIDTH][GRID_HIGHT];
     

@@ -1,6 +1,7 @@
 # iBS_LIB
 # Unicode C++ Lib
 # iBS::u8char, iBS::u8str, iBS::u8text
+More dertail on UTF-8_String.h [here](./UTF-8_String.md) 
 
 //------------------------------------------------------------------------
 

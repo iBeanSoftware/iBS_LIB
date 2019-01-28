@@ -1,7 +1,7 @@
 
 Unicode 64bit int API
 
-Unicode_String.h - Is like the above header, but the structures charT are saved in memory as a single Unicode 64 bit Int.
+Unicode_String.h - Is like the UTF-8_String.h header file, but the charT structures are saved in memory as a single Unicode 64 bit Int.
 
 Found in the Unicode_String.h File using namespace iBS List of varable types: 
 

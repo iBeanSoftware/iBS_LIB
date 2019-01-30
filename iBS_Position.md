@@ -49,5 +49,14 @@
               Line& operator =(Line& other);
               
         iBS::HexTrail
+          Constructor:
+            HexTrail();
+          Deconstructor:
+            ~HexTrail();
+          
+HexTrail& operator =(HexTrail& other)
+bool isSet(){if(ref.size()) return true; return false;};
+Line bee_line;
+
         
         iBS::HexGrid

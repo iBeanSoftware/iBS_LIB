@@ -49,14 +49,33 @@
               Line& operator =(Line& other);
               
         iBS::HexTrail
+          Varibles:
+            Line bee_line;
+            vector<Position> ref;
           Constructor:
             HexTrail();
           Deconstructor:
             ~HexTrail();
-          
-HexTrail& operator =(HexTrail& other)
-bool isSet(){if(ref.size()) return true; return false;};
-Line bee_line;
+          Operator:
+            HexTrail& operator =(HexTrail& other);
+          Functions:
+            bool isSet();
+
 
         
         iBS::HexGrid
+          Global Varibles:
+            const int GRID_WIDTH=23;
+            const int GRID_HIGHT=21;
+          Varibles:
+            int ref[GRID_WIDTH][GRID_HIGHT];
+          Functions:
+            void setValue(Position& p, int val);
+            void scan_state();
+            bool in_bounds(Position& p);
+            bool is_corner(Position& p);
+            bool is_edge(Position& p);
+            void movePos(Position& pos, int arg1);
+            int safe(Position& p);
+            void zero();// sets all to 0
+            void clear();// sets all to -1 

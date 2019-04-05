@@ -13,6 +13,7 @@ Object Type iBS::Matrix
          Matrix& operator +(Matrix& o);
          Matrix& operator -(Matrix& o);
          Matrix& operator *(Matrix& o);
+         //todo Matrix& operator /(Matrix& o);
          Matrix& operator ^(int power);
         
     Functions:

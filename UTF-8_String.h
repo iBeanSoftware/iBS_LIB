@@ -17,7 +17,7 @@
 //  https://github.com/NashBean/UTF-8_Vector/blob/master/Uchar.h
 //
 //  Created by nash on 9/18/15.
-//  Copyright© 2015+ iBean Software. All rights reserved.
+//  Copyright© 2015-2024 iBean Software. All rights reserved.
 //  iBeanSoftware@GMail.com
 //  https://www.facebook.com/iBeanSowtware
 //
@@ -25,8 +25,6 @@
 //  Constructs using 0-6: 8 bit bytes
 //  to hold a UTF-8 char.
 //  Should be std::vector safe
-//  And should be fast.
-
 
 #include <vector>
 #include <string>
@@ -35,15 +33,14 @@
 #include <cwchar>
 
 const int UTF8Str_MAJOR_VERSION = 3;
-const int UTF8Str_MINOR_VERSION = 5;
+const int UTF8Str_MINOR_VERSION = 6;
 
 namespace iBS 
 {
 #define UnicodeInt uint64_t
     //-------
     struct  u8char  //Changed struct name to match C++ standerds
-    {     //-------
-        
+    {     
         u8char():ref(0){ref.reserve(1);};//ref[0]='\x0000';};
         u8char(std::vector<unsigned char>& c):ref(c.size())
         {   // should I just allacate here?
@@ -239,10 +236,11 @@ namespace iBS
     //----------------------------------------------------------    
     
     
-    struct u8str
+    class u8str
     {
+    private:
         std::vector<u8char> ref;
-
+    public:
         u8str():ref(0){ref.reserve(64);};
         u8str(u8char uc):ref(1){ref.reserve(64); ref[0]=uc;};
         u8str(char ch):ref(1){ref.reserve(64); ref[0]=u8char(ch);};
@@ -311,10 +309,12 @@ namespace iBS
         
     };
     
-    struct u8text
+    class u8text
     {
+    private:
         std::vector<u8str> ref;
-        
+
+    public:
         u8text():ref(0){ref.reserve(4);};
         u8text(u8char uc):ref(1){ref.reserve(4); ref[0]=u8str(uc);};
         u8text(char ch):ref(1){ref.reserve(4); ref[0]=u8str(ch);};
@@ -339,32 +339,36 @@ namespace iBS
         };
     };
     
-    struct u8record
+    class u8record
     {
+    private:
         std::vector<u8str> ref;
+
+    public:
         void append(u8str str){ref.push_back(str);};
         void clear(){ref.clear();};
         size_t width() {  return ref.size(); };
-
     };
     
-    struct u8table
+    class u8table
     {// ref[0] = field names, ref[1] = record 1
+    private:
         std::vector<u8record> ref;
+    public:    
         void append(u8record rec){ref.push_back(rec);};
         void clear(){ref.clear();};
         size_t length() {  return ref.size(); };
     };
     
     
-    //-------------------------------
-    //      Useful UTF-8 Functions
-    //-------------------------------
+    //------------------------------------------
+    //      Useful UTF-8 global iBS::Functions
+    //------------------------------------------
     //bool isLeadByte(unsigned char byte); //use ByteCount 
     
     bool isTrailByte(unsigned char byte)
     { return (byte & 0x80)&&((byte & 0x40)==0); };
-    //-------------------------------
+    //------------------------------------------
     
     short ByteCount(unsigned char byte) 
     {//  returns 0 if not lead byte or -1 if not UTF-8 formated 
@@ -385,7 +389,7 @@ namespace iBS
         if (byte & 0x02) return -1;//this was not UTF-8 format  
         return result;
     };
-    //-------------------------------
+    //----------------------------------------
     
     void readu8file(std::string filename,u8str& u8_v)
     {

@@ -3,7 +3,7 @@
 //
 //
 //  Created by nash(https://github.com/NashBean) on 9/20/16.
-//  Copyright 2016 iBean Software(https://iBeanSoftware.github.io),
+//  Copyright 2016-2024 iBean Software(https://iBeanSoftware.github.io),
 //  All rights reserved.
 //
 
@@ -35,18 +35,13 @@
 #include <cwchar>
 
 const int UTF8Str_MAJOR_VERSION = 3;
-const int UTF8Str_MINOR_VERSION = 4;
+const int UTF8Str_MINOR_VERSION = 5;
 
 namespace iBS 
 {
-/*  rem switch to change from 32 bit int - 64 bit int
-#define UnicodeInt uint32_t 
-/*/    
 #define UnicodeInt uint64_t
-//*/
-    
     //-------
-    typedef struct  u8char  //Changed struct name to match C++ standerds
+    struct  u8char  //Changed struct name to match C++ standerds
     {     //-------
         
         u8char():ref(0){ref.reserve(1);};//ref[0]='\x0000';};
@@ -244,7 +239,7 @@ namespace iBS
     //----------------------------------------------------------    
     
     
-    typedef struct u8str
+    struct u8str
     {
         std::vector<u8char> ref;
 
@@ -316,7 +311,7 @@ namespace iBS
         
     };
     
-    typedef struct u8text
+    struct u8text
     {
         std::vector<u8str> ref;
         
@@ -451,15 +446,9 @@ namespace iBS
     };   
     //-------------------------------
     
-    
-    
-    
- 
-    
 }//end of namespace iBS 
 
 #endif // iBS_u8char_h
-
 
 #endif // iBS_UTF_8_String_h
 

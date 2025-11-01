@@ -1,46 +1,37 @@
 //
 //  UTF-8_String.h
 //
-//
-//  Created by nash(https://github.com/NashBean) on 9/20/16.
-//  Copyright 2016-2024 iBean Software(https://iBeanSoftware.github.io),
-//  All rights reserved.
-//
+//  Created by Nash Bean (https://github.com/NashBean) on 9/18/15. reworked 2/26/2024
+//  Copyright© 2015+, 2024+, iBean Software(), all rights reserved.
+//  ----------- iBean Software of Tennessee ----------- 
+//  email: iBeanSoftware@GMail.com
+//  web sight: https://iBeanSoftware.github.io
+//  FB Page: https://www.facebook.com/iBeanSowtware
+//  --------------------------------------------------- 
 
-#ifndef iBS_Uchar_h
 #ifndef iBS_UTF_8_String_h
 #define iBS_UTF_8_String_h
-
-//
-//  Uchar.h  // Uchar header
-//  Get cureent version off Github:
-//  https://github.com/NashBean/UTF-8_Vector/blob/master/Uchar.h
-//
-//  Created by nash on 9/18/15.
-//  Copyright© 2015-2024 iBean Software. All rights reserved.
-//  iBeanSoftware@GMail.com
-//  https://www.facebook.com/iBeanSowtware
-//
-//  a struct to hold a multi length UTF-8 char
-//  Constructs using 0-6: 8 bit bytes
-//  to hold a UTF-8 char.
-//  Should be std::vector safe
 
 #include <vector>
 #include <string>
 #include <sstream>
 #include <fstream>
 #include <cwchar>
+#include <algorithm>
+//    #include <iostream>
 
-const int UTF8Str_MAJOR_VERSION = 3;
-const int UTF8Str_MINOR_VERSION = 6;
+const int UTF8Str_MAJOR_VERSION = 4;
+const int UTF8Str_MINOR_VERSION = 0;
 
 namespace iBS 
 {
 #define UnicodeInt uint64_t
-    //-------
+    
+    //----------------------------------------------------------    
+
     struct  u8char  //Changed struct name to match C++ standerds
-    {     
+    {     //-------
+        
         u8char():ref(0){ref.reserve(1);};//ref[0]='\x0000';};
         u8char(std::vector<unsigned char>& c):ref(c.size())
         {   // should I just allacate here?
@@ -95,7 +86,7 @@ namespace iBS
         };
         size_t size() const  { return ref.size(); };
         void   encode(unsigned int& unicode){setUnicode(unicode);}; 
-        inline void setUnicode(UnicodeInt unicode)
+        void setUnicode(UnicodeInt unicode)
         { //converts unicode into UTF-8 formatted u8char  
             if (unicode<=0x7f) 
             {
@@ -232,15 +223,11 @@ namespace iBS
         };       
     };
     //----------------------------------------------------------    
-    //
-    //----------------------------------------------------------    
-    
-    
-    class u8str
+
+    struct u8str
     {
-    private:
         std::vector<u8char> ref;
-    public:
+
         u8str():ref(0){ref.reserve(64);};
         u8str(u8char uc):ref(1){ref.reserve(64); ref[0]=uc;};
         u8str(char ch):ref(1){ref.reserve(64); ref[0]=u8char(ch);};
@@ -300,7 +287,7 @@ namespace iBS
         {
             if (ref.size()==0) 
             { return ""; }
-            std::stringstream result;
+            std::stringstream result="";
             for (size_t i=0; i<ref.size(); ++i) 
                 ref[i].append(result);
             
@@ -308,13 +295,12 @@ namespace iBS
         };
         
     };
+    //----------------------------------------------------------    
     
-    class u8text
+    struct u8text
     {
-    private:
         std::vector<u8str> ref;
-
-    public:
+        
         u8text():ref(0){ref.reserve(4);};
         u8text(u8char uc):ref(1){ref.reserve(4); ref[0]=u8str(uc);};
         u8text(char ch):ref(1){ref.reserve(4); ref[0]=u8str(ch);};
@@ -338,37 +324,34 @@ namespace iBS
             return s;
         };
     };
+    //*/
     
-    class u8record
+    struct u8record
     {
-    private:
         std::vector<u8str> ref;
-
-    public:
         void append(u8str str){ref.push_back(str);};
         void clear(){ref.clear();};
         size_t width() {  return ref.size(); };
+
     };
     
-    class u8table
+    struct u8table
     {// ref[0] = field names, ref[1] = record 1
-    private:
         std::vector<u8record> ref;
-    public:    
         void append(u8record rec){ref.push_back(rec);};
         void clear(){ref.clear();};
         size_t length() {  return ref.size(); };
     };
     
-    
-    //------------------------------------------
-    //      Useful UTF-8 global iBS::Functions
-    //------------------------------------------
+
+    //-------------------------------
+    //      Useful UTF-8 Functions
+    //-------------------------------
     //bool isLeadByte(unsigned char byte); //use ByteCount 
     
     bool isTrailByte(unsigned char byte)
     { return (byte & 0x80)&&((byte & 0x40)==0); };
-    //------------------------------------------
+    //-------------------------------
     
     short ByteCount(unsigned char byte) 
     {//  returns 0 if not lead byte or -1 if not UTF-8 formated 
@@ -389,9 +372,30 @@ namespace iBS
         if (byte & 0x02) return -1;//this was not UTF-8 format  
         return result;
     };
-    //----------------------------------------
-    
-    void readu8file(std::string filename,u8str& u8_v)
+    //-------------------------------
+
+//TODO
+    size_t UTF8_Char_Count(std::stringstream& ss)
+    {
+
+
+    };
+    //-------------------------------
+
+    void read_file(const std::string& filename, std::string& text) 
+        {
+        std::ifstream file(filename);
+        // read line by line
+        std::string line;
+        while (std::getline(file, line)) 
+            {
+            text += line + "\n";
+            }
+        }
+   //-------------------------------
+
+    /*/
+    void readu8file(std::string filename,u8str& u8_v) //utilize to find coruption
     {
         std::ifstream    fin  ;  
         fin.open(filename.c_str());
@@ -431,10 +435,11 @@ namespace iBS
         }
         
         fin.close();
-    };    
+    };  
+    //*/  
     //-------------------------------
     
-    UnicodeInt decode(u8char& c)//returns a Unicode
+    UnicodeInt getUnicode(u8char& c)//returns a Unicode
     {
         UnicodeInt result=0;
         if (c.size()==0) { return result;}
@@ -450,9 +455,107 @@ namespace iBS
     };   
     //-------------------------------
     
+    
+    class uString 
+        {
+    public:
+      // Constructors----------------------------  
+        uString():ref(0){ref.reserve(64);}; 
+        uString(std::stringstream& str):ref(str.size()){if(str.size()) for(size_t i=0; i<ref.size(); ++i) ref[i]=str[i]};
+        uString(std::string& str):ref(str.size()){if (ref.size()) for(size_t i=0; i<ref.size(); ++i) ref[i]=str[i];};
+        uString(u8char uc):ref(0){ref.reserve(64); ref[0]=uc;};
+        uString(char ch):ref(0){ref.reserve(64); ref[0]=ch;};
+     //TODO   uString(wchar_t ch):ref(0){ref.reserve(64); ref[0]=u8char(ch);};
+        ~uString(){clear();};
+
+      // operators ------------------------------
+        uString& operator=(uString const& str)
+        {   
+            ref.resize(str.ref.size());   
+            for (size_t i=0; i<ref.size(); ++i) ref[i]=str.ref[i]; 
+            return *this;
+        };
+
+        uString& operator=(std::string const& str)
+        {   
+            ref.resize(str.length());   
+            for (size_t i=0; i<ref.size(); ++i) ref[i]=str.ref[i]; 
+            return *this;
+        };
+
+      // Public Functions ------------------------
+        void append(const std::string& str) {ref.insert(ref.end(), str.begin(), str.end());}
+        std::size_t size() const{return ref.size();}
+        void clear() {if(ref.size()) ref.clear();}
+        const char* c_str() const {return ref.data();}
+        //size_t u8char_count(){return UTF8_char_count(std::stringstream& str)};
+                void append(u8char uc){ref.push_back(uc);};
+        void append(char ch){ref.push_back(ch);};
+        void append(wchar_t ch){ref.push_back(u8char(ch).str());};
+        void append(std::stringstream& str)
+        {
+            if (ref.size()) 
+            {
+                for (size_t i=0; i<ref.size(); ++i) 
+                    ref[i].append(str);
+            }
+        };
+ 
+        void append(std::string& str)
+        {
+            if (ref.size()) 
+            {
+                for (size_t i=0; i<ref.size(); ++i) 
+                    ref[i].append(str);
+            }
+        };
+       
+        void append(std::vector<unsigned char>& c):ref(c.size())
+        { 
+            for (size_t i=0; i<c.size(); ++i) 
+            {   ref.push_back(c[i]);   }
+        };
+ 
+        std::string str()
+        {
+            if (ref.size()==0) 
+            { return ""; }
+            std::stringstream result;
+            for (size_t i=0; i<ref.size(); ++i) 
+                ref[i].append(result);
+            
+            return result.str();
+        };
+
+    private:
+        std::vector<char> ref;  
+        };
+   //-------------------------------
+
+    struct uText 
+        {
+        std::vector<uString> lines;
+
+        void append_line(const uString& line) {lines.push_back(line);}
+        };
+
+    void read_file_UTF8(const std::string& filename, uText& text) 
+        {
+        std::ifstream file(filename);
+        if (!file) {return;}
+        uString line;
+        while (std::getline(file, line.ref)) 
+            {
+            text.append_line(line);
+            }
+        }
+   //-------------------------------
+
+    
 }//end of namespace iBS 
 
 #endif // iBS_u8char_h
+
 
 #endif // iBS_UTF_8_String_h
 
